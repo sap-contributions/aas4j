@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2021 Fraunhofer-Gesellschaft zur Foerderung der angewandten Forschung e. V.
- * Copyright (C) 2023 SAP SE or an SAP affiliate company. All rights reserved.
- *
+ * Copyright (c) 2023, SAP SE or an SAP affiliate company
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
  * 
@@ -15,9 +15,13 @@
 
 package org.eclipse.digitaltwin.aas4j.v3.model;
 
+
+
 import org.eclipse.digitaltwin.aas4j.v3.model.annotations.IRI;
 import org.eclipse.digitaltwin.aas4j.v3.model.annotations.KnownSubtypes;
-import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultProtocolInformation;
+import org.eclipse.digitaltwin.aas4j.v3.model.builder.*;
+import org.eclipse.digitaltwin.aas4j.v3.model.impl.*;
+
 
 /**
 */
@@ -28,16 +32,16 @@ public interface ProtocolInformation {
 
     /**
      *
-     * More information under https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointAddress
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/endpointAddress
      *
      * @return Returns the String for the property endpointAddress.
      */
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointAddress")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/endpointAddress")
     String getEndpointAddress();
 
     /**
      *
-     * More information under https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointAddress
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/endpointAddress
      *
      * @param endpointAddress desired value for the property endpointAddress.
      */
@@ -45,16 +49,16 @@ public interface ProtocolInformation {
 
     /**
      *
-     * More information under https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointProtocol
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/endpointProtocol
      *
      * @return Returns the String for the property endpointProtocol.
      */
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointProtocol")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/endpointProtocol")
     String getEndpointProtocol();
 
     /**
      *
-     * More information under https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointProtocol
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/endpointProtocol
      *
      * @param endpointProtocol desired value for the property endpointProtocol.
      */
@@ -62,18 +66,16 @@ public interface ProtocolInformation {
 
     /**
      *
-     * More information under
-     * https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointProtocolVersion
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/endpointProtocolVersion
      *
      * @return Returns the String for the property endpointProtocolVersion.
      */
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointProtocolVersion")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/endpointProtocolVersion")
     String getEndpointProtocolVersion();
 
     /**
      *
-     * More information under
-     * https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointProtocolVersion
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/endpointProtocolVersion
      *
      * @param endpointProtocolVersion desired value for the property endpointProtocolVersion.
      */
@@ -81,16 +83,16 @@ public interface ProtocolInformation {
 
     /**
      *
-     * More information under https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocol
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocol
      *
      * @return Returns the String for the property subprotocol.
      */
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocol")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocol")
     String getSubprotocol();
 
     /**
      *
-     * More information under https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocol
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocol
      *
      * @param subprotocol desired value for the property subprotocol.
      */
@@ -98,16 +100,16 @@ public interface ProtocolInformation {
 
     /**
      *
-     * More information under https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocolBody
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocolBody
      *
      * @return Returns the String for the property subprotocolBody.
      */
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocolBody")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocolBody")
     String getSubprotocolBody();
 
     /**
      *
-     * More information under https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocolBody
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocolBody
      *
      * @param subprotocolBody desired value for the property subprotocolBody.
      */
@@ -115,18 +117,16 @@ public interface ProtocolInformation {
 
     /**
      *
-     * More information under
-     * https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocolBodyEncoding
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocolBodyEncoding
      *
      * @return Returns the String for the property subprotocolBodyEncoding.
      */
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocolBodyEncoding")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocolBodyEncoding")
     String getSubprotocolBodyEncoding();
 
     /**
      *
-     * More information under
-     * https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocolBodyEncoding
+     * More information under https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocolBodyEncoding
      *
      * @param subprotocolBodyEncoding desired value for the property subprotocolBodyEncoding.
      */
