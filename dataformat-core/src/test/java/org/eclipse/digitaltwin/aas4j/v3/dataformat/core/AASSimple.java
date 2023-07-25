@@ -32,6 +32,7 @@ import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultAssetAdministrationShe
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultAssetInformation;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultConceptDescription;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultDataSpecificationIec61360;
+import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultDataSpecificationPhysicalUnit;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultEmbeddedDataSpecification;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultEnvironment;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultFile;
@@ -39,6 +40,7 @@ import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultKey;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultLangStringDefinitionTypeIec61360;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultLangStringPreferredNameTypeIec61360;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultLangStringShortNameTypeIec61360;
+import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultLangStringTextType;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultProperty;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultReference;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultResource;
@@ -125,6 +127,7 @@ public class AASSimple {
     private static final String SUBMODEL_OPERATIONAL_DATA_PROPERTY_VALUE = "4370";
     private static final String SUBMODEL_OPERATIONAL_DATA_PROPERTY_VALUETYPE = "integer";
     public static final String AAS_3_0_RC_02_DATA_SPECIFICATION_IEC_61360 = "https://admin-shell.io/aas/3/0/RC02/DataSpecificationIec61360";
+    public static final String AAS_3_0_RC_02_DATA_SPECIFICATION_PHYSICAL_UNIT = "https://admin-shell.io/aas/3/0/RC02/DataSpecificationPhysicalUnit";
 
     public AASSimple() {
     }
@@ -443,6 +446,39 @@ public class AASSimple {
                                 .definition(new DefaultLangStringDefinitionTypeIec61360.Builder().text(DOCUMENT_DEF).language("EN").build())
                                 .build())
                         .build())
+                .embeddedDataSpecifications(new DefaultEmbeddedDataSpecification.Builder()
+                        .dataSpecification(new DefaultReference.Builder()
+                                .keys(new DefaultKey.Builder()
+                                        .type(KeyTypes.GLOBAL_REFERENCE)
+                                        .value(AAS_3_0_RC_02_DATA_SPECIFICATION_PHYSICAL_UNIT)
+                                        .build())
+                                .type(ReferenceTypes.EXTERNAL_REFERENCE)
+                                .build()
+                        )
+                        .dataSpecificationContent(new DefaultDataSpecificationPhysicalUnit.Builder()
+                                .conversionFactor("1.0")
+                                .dinNotation("din-notation")
+                                .eceCode("ece-code")
+                                .eceName("ece-name")
+                                .nistName("nist-name")
+                                .registrationAuthorityId("registration-authority-id")
+                                .siName("si-name")
+                                .siNotation("si-notation")
+                                .sourceOfDefinition("source-of-definition")
+                                .supplier("supplier")
+                                .unitName("unit-name")
+                                .unitSymbol("unit-symbol")
+                                .definition(new DefaultLangStringTextType.Builder()
+                                        .language("en")
+                                        .text("definition-en")
+                                        .build())
+                                .definition(new DefaultLangStringTextType.Builder()
+                                        .language("de")
+                                        .text("definition-de")
+                                        .build())
+                                .build())
+                        .build()
+                )
                 .build();
     }
 

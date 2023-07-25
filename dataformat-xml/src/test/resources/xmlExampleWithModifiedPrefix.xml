@@ -192,7 +192,7 @@
             </test:keys>
           </test:dataSpecification>
           <test:dataSpecificationContent>
-            <test:dataSpecificationIec61360>
+            <test:dataSpecificationPhysicalUnit>
               <test:preferredName>
                 <test:langStringPreferredNameTypeIec61360>
                   <test:language>EN</test:language>
@@ -222,7 +222,7 @@
                   <test:text>SprachabhängigerTiteldesDokuments.</test:text>
                 </test:langStringDefinitionTypeIec61360>
               </test:definition>
-            </test:dataSpecificationIec61360>
+            </test:dataSpecificationPhysicalUnit>
           </test:dataSpecificationContent>
         </test:embeddedDataSpecification>
       </test:embeddedDataSpecifications>
@@ -242,7 +242,7 @@
             </test:keys>
           </test:dataSpecification>
           <test:dataSpecificationContent>
-            <test:dataSpecificationIec61360>
+            <test:dataSpecificationPhysicalUnit>
               <test:preferredName>
                 <test:langStringPreferredNameTypeIec61360>
                   <test:language>EN</test:language>
@@ -272,7 +272,7 @@
                   <test:text>A file representing the document version. In addition to the mandatory PDF file, other files can be specified.</test:text>
                 </test:langStringDefinitionTypeIec61360>
               </test:definition>
-            </test:dataSpecificationIec61360>
+            </test:dataSpecificationPhysicalUnit>
           </test:dataSpecificationContent>
         </test:embeddedDataSpecification>
       </test:embeddedDataSpecifications>
@@ -297,7 +297,7 @@
             </test:keys>
           </test:dataSpecification>
           <test:dataSpecificationContent>
-            <test:dataSpecificationIec61360>
+            <test:dataSpecificationPhysicalUnit>
               <test:preferredName>
                 <test:langStringPreferredNameTypeIec61360>
                   <test:language>de</test:language>
@@ -330,7 +330,7 @@
                   <test:text>Greatestpermissiblerotationspeedwithwhichthemotororfeedingunitmaybeoperated</test:text>
                 </test:langStringDefinitionTypeIec61360>
               </test:definition>
-            </test:dataSpecificationIec61360>
+            </test:dataSpecificationPhysicalUnit>
           </test:dataSpecificationContent>
         </test:embeddedDataSpecification>
       </test:embeddedDataSpecifications>
@@ -351,7 +351,7 @@
             </test:keys>
           </test:dataSpecification>
           <test:dataSpecificationContent>
-            <test:dataSpecificationIec61360>
+            <test:dataSpecificationPhysicalUnit>
               <test:preferredName>
                 <test:langStringPreferredNameTypeIec61360>
                   <test:language>DE</test:language>
@@ -394,7 +394,7 @@
                   <test:text>Actual rotationspeed with which the motor or feedingunit is operated</test:text>
                 </test:langStringDefinitionTypeIec61360>
               </test:definition>
-            </test:dataSpecificationIec61360>
+            </test:dataSpecificationPhysicalUnit>
           </test:dataSpecificationContent>
         </test:embeddedDataSpecification>
       </test:embeddedDataSpecifications>
@@ -414,7 +414,7 @@
             </test:keys>
           </test:dataSpecification>
           <test:dataSpecificationContent>
-            <test:dataSpecificationIec61360>
+            <test:dataSpecificationPhysicalUnit>
               <test:preferredName>
                 <test:langStringPreferredNameTypeIec61360>
                   <test:language>EN</test:language>
@@ -440,7 +440,7 @@
                   <test:text>Feste und geordnete Menge von für die Verwendung durch Personen bestimmte Informationen, die verwaltet und als Einheit zwischen Benutzern und System ausgetauscht werden kann.</test:text>
                 </test:langStringDefinitionTypeIec61360>
               </test:definition>
-            </test:dataSpecificationIec61360>
+            </test:dataSpecificationPhysicalUnit>
           </test:dataSpecificationContent>
         </test:embeddedDataSpecification>
       </test:embeddedDataSpecifications>
