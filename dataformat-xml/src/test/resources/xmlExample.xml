@@ -444,43 +444,6 @@
             </aas:dataSpecificationIec61360>
           </aas:dataSpecificationContent>
         </aas:embeddedDataSpecification>
-        <aas:embeddedDataSpecification>
-          <aas:dataSpecification>
-            <aas:type>ExternalReference</aas:type>
-            <aas:keys>
-              <aas:key>
-                <aas:type>GlobalReference</aas:type>
-                <aas:value>https://admin-shell.io/aas/3/0/RC02/DataSpecificationPhysicalUnit</aas:value>
-              </aas:key>
-            </aas:keys>
-          </aas:dataSpecification>
-          <aas:dataSpecificationContent>
-            <aas:dataSpecificationPhysicalUnit>
-              <aas:conversionFactor>1.0</aas:conversionFactor>
-              <aas:dinNotation>din-notation</aas:dinNotation>
-              <aas:eceCode>ece-code</aas:eceCode>
-              <aas:eceName>ece-name</aas:eceName>
-              <aas:nistName>nist-name</aas:nistName>
-              <aas:registrationAuthorityId>registration-authority-id</aas:registrationAuthorityId>
-              <aas:siName>si-name</aas:siName>
-              <aas:siNotation>si-notation</aas:siNotation>
-              <aas:sourceOfDefinition>source-of-definition</aas:sourceOfDefinition>
-              <aas:supplier>supplier</aas:supplier>
-              <aas:unitName>unit-name</aas:unitName>
-              <aas:unitSymbol>unit-symblo</aas:unitSymbol>
-              <aas:definition>
-                <aas:langStringTextType>
-                  <aas:language>en</aas:language>
-                  <aas:text>definition-en</aas:text>
-                </aas:langStringTextType>
-                <aas:langStringTextType>
-                  <aas:language>de</aas:language>
-                  <aas:text>definition-de</aas:text>
-                </aas:langStringTextType>
-              </aas:definition>
-            </aas:dataSpecificationPhysicalUnit>
-          </aas:dataSpecificationContent>
-        </aas:embeddedDataSpecification>
       </aas:embeddedDataSpecifications>
     </aas:conceptDescription>
   </aas:conceptDescriptions>
