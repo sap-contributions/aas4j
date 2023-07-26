@@ -103,7 +103,6 @@ public class JsonReferableDeserializerTest {
 	}
 
     @Test
-    @Ignore("Add test after DataSpecficationPhysicalUnit is supported again")
     public void testDeserializeConceptDescriptionWithPhysicalUnit() throws IOException, DeserializationException {
         ExampleData<ConceptDescription> exampleData = Examples.CONCEPT_DESCRIPTION_DATA_SPECIFICATION_PHYSICAL_UNIT;
         Object expected = exampleData.getModel();
