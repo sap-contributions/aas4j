@@ -31,23 +31,9 @@ import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultDataSpecificationPhysi
 })
 public interface DataSpecificationPhysicalUnit extends DataSpecificationContent {
 
-    /**
-     * Value
-     * <p>
-     * More information under https://admin-shell.io/DataSpecificationTemplates/DataSpecificationPhysicalUnit/3/0/RC02/conversionFactor
-     *
-     * @return Returns the property value.
-     */
     @IRI("https://admin-shell.io/DataSpecificationTemplates/DataSpecificationPhysicalUnit/3/0/RC02/conversionFactor")
     String getConversionFactor();
 
-    /**
-     * Value
-     * <p>
-     * More information under https://admin-shell.io/DataSpecificationTemplates/DataSpecificationPhysicalUnit/3/0/RC02/conversionFactor
-     *
-     * @param conversionFactor desired value for the property value.
-     */
     void setConversionFactor(String conversionFactor);
 
     @IRI("https://admin-shell.io/DataSpecificationTemplates/DataSpecificationPhysicalUnit/3/0/RC02/dinNotation")

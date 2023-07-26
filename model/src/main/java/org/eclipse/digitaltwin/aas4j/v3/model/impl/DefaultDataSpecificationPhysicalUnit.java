@@ -25,12 +25,7 @@ import org.eclipse.digitaltwin.aas4j.v3.model.builder.DataSpecificationPhysicalU
 
 
 /**
- * Default implementation of package
- * org.eclipse.digitaltwin.aas4j.v3.model.DataSpecificationPhysicalUnit
- * <p>
- * Content of data specification template for concept descriptions for properties, values and value
- * lists conformant to Physical Unit.
- * <b>This is just for testing purposes!</b>
+ * Default implementation of org.eclipse.digitaltwin.aas4j.v3.model.DataSpecificationPhysicalUnit
  */
 
 @IRI("aas:DefaultDataSpecificationPhysicalUnit")
