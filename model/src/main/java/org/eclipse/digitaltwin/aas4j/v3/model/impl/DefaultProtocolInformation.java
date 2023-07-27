@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2021 Fraunhofer-Gesellschaft zur Foerderung der angewandten Forschung e. V.
- * Copyright (C) 2023 SAP SE or an SAP affiliate company. All rights reserved.
- *
+ * Copyright (c) 2023, SAP SE or an SAP affiliate company
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -15,34 +15,49 @@
 
 package org.eclipse.digitaltwin.aas4j.v3.model.impl;
 
-import org.eclipse.digitaltwin.aas4j.v3.model.ProtocolInformation;
-import org.eclipse.digitaltwin.aas4j.v3.model.annotations.IRI;
-import org.eclipse.digitaltwin.aas4j.v3.model.builder.ProtocolInformationBuilder;
-
 import java.util.Objects;
+
+
+import org.eclipse.digitaltwin.aas4j.v3.model.*;
+import org.eclipse.digitaltwin.aas4j.v3.model.annotations.IRI;
+import org.eclipse.digitaltwin.aas4j.v3.model.builder.*;
+
+
+/**
+ * Default implementation of package org.eclipse.digitaltwin.aas4j.v3.model.ProtocolInformation
+ * 
+ */
 
 @IRI("aas:ProtocolInformation")
 public class DefaultProtocolInformation implements ProtocolInformation {
 
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointAddress")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/endpointAddress")
     protected String endpointAddress;
 
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointProtocol")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/endpointProtocol")
     protected String endpointProtocol;
 
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/endpointProtocolVersion")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/endpointProtocolVersion")
     protected String endpointProtocolVersion;
 
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocol")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocol")
     protected String subprotocol;
 
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocolBody")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocolBody")
     protected String subprotocolBody;
 
-    @IRI("https://admin-shell.io/aas/3/0/RC02/ProtocolInformation/subprotocolBodyEncoding")
+    @IRI("https://admin-shell.io/aas/3/0/ProtocolInformation/subprotocolBodyEncoding")
     protected String subprotocolBodyEncoding;
 
-    public DefaultProtocolInformation() {
+    public DefaultProtocolInformation() {}
+
+    public DefaultProtocolInformation(ProtocolInformation x) {
+        this.endpointAddress = x.getEndpointAddress();
+        this.endpointProtocol = x.getEndpointProtocol();
+        this.endpointProtocolVersion = x.getEndpointProtocolVersion();
+        this.subprotocol = x.getSubprotocol();
+        this.subprotocolBody = x.getSubprotocolBody();
+        this.subprotocolBodyEncoding = x.getSubprotocolBodyEncoding();
     }
 
     @Override
@@ -132,6 +147,19 @@ public class DefaultProtocolInformation implements ProtocolInformation {
     @Override
     public void setSubprotocolBodyEncoding(String subprotocolBodyEncoding) {
         this.subprotocolBodyEncoding = subprotocolBodyEncoding;
+    }
+
+    public String toString() {
+        return String.format(
+            "DefaultProtocolInformation (" + "endpointAddress=%s,"
+                + "endpointProtocol=%s,"
+                + "endpointProtocolVersion=%s,"
+                + "subprotocol=%s,"
+                + "subprotocolBody=%s,"
+                + "subprotocolBodyEncoding=%s,"
+                + ")",
+            this.endpointAddress, this.endpointProtocol, this.endpointProtocolVersion, this.subprotocol, this.subprotocolBody,
+            this.subprotocolBodyEncoding);
     }
 
     /**
