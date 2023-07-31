@@ -39,21 +39,22 @@ class AnnotatedRelationshipMapper extends RelationshipElementMapper {
 
     @Override
     JsonNode toJson() throws ValueOnlySerializationException {
-        ObjectNode node = (ObjectNode) super.toJson();
+        ObjectNode valueNode = (ObjectNode) super.toJson();
         List<SubmodelElement> annotations = new ArrayList<>(((AnnotatedRelationshipElement)element).getAnnotations());
         if(annotations.size() > 0) {
             ElementsListMapper listMapper = new ElementsListMapper(
                 annotations, idShortPath + "." + ANNOTATIONS);
-            node.set(ANNOTATIONS, listMapper.toJson());
+            valueNode.set(ANNOTATIONS, listMapper.toJson());
         }
-        return node;
+        return asValueNode(valueNode);
     }
 
     @Override
     void update(JsonNode valueOnly) throws ValueOnlySerializationException {
         super.update(valueOnly);
         List<DataElement> annotations = ((AnnotatedRelationshipElement)element).getAnnotations();
-        JsonNode annotationsNode = valueOnly.get(ANNOTATIONS);
+        JsonNode value = valueFromNode("Cannot update the annotated relationship", idShortPath, valueOnly);
+        JsonNode annotationsNode = value.get(ANNOTATIONS);
         if(annotationsNode == null || annotationsNode.isNull()) {
             annotations.clear();
         } else {

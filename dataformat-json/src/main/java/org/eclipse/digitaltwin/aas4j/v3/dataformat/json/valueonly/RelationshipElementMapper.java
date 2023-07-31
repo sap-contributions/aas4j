@@ -27,7 +27,7 @@ import org.eclipse.digitaltwin.aas4j.v3.model.RelationshipElement;
  * named "second". Their corresponding values are ${RelationshipElement/first} resp. ${Relationship/second}. The values
  * are serialized according to the serialization of a Reference.
  */
-class RelationshipElementMapper extends AbstractMapper<RelationshipElement> {
+class RelationshipElementMapper extends AbstractReferableMapper<RelationshipElement> {
     private static final String FIRST = "first";
     private static final String SECOND = "second";
 
@@ -47,7 +47,8 @@ class RelationshipElementMapper extends AbstractMapper<RelationshipElement> {
     @Override
     void update(JsonNode valueOnly) throws ValueOnlySerializationException {
         JsonValueOnlyDeserialiser deserialiser = new JsonValueOnlyDeserialiser();
-        element.setFirst(deserialiser.deserialiseReference(valueOnly.get(FIRST), idShortPath + "." + FIRST));
-        element.setSecond(deserialiser.deserialiseReference(valueOnly.get(SECOND), idShortPath + "." + SECOND));
+        JsonNode value = valueFromNode("Cannot update the relationship element", idShortPath, valueOnly);
+        element.setFirst(deserialiser.deserialiseReference(value.get(FIRST), idShortPath + "." + FIRST));
+        element.setSecond(deserialiser.deserialiseReference(value.get(SECOND), idShortPath + "." + SECOND));
     }
 }

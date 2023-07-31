@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
  * of the respective property’s value in accordance with the data type to value mapping.
  * @see ValueConverter
  */
-class PropertyMapper extends AbstractMapper<Property> {
+class PropertyMapper extends AbstractReferableMapper<Property> {
     PropertyMapper(Property property, String idShortPath) {
         super(property, idShortPath);
     }
@@ -33,10 +33,8 @@ class PropertyMapper extends AbstractMapper<Property> {
     @Override
     JsonNode toJson() throws ValueOnlySerializationException {
         try {
-            JsonNode valueNode = ValueConverter.convert(element.getValueType(), element.getValue());
-            ObjectNode objectNode = JsonNodeFactory.instance.objectNode();
-            objectNode.set(element.getIdShort(), valueNode);
-            return objectNode;
+            JsonNode value = ValueConverter.convert(element.getValueType(), element.getValue());
+            return asValueNode(value);
         } catch (NumberFormatException ex) {
             throw new ValueOnlySerializationException("Cannot serialize the property with idShort path '" +
                 idShortPath + "': " + ex.getMessage(), idShortPath);
@@ -45,24 +43,7 @@ class PropertyMapper extends AbstractMapper<Property> {
 
     @Override
     void update(JsonNode valueOnly) throws ValueOnlySerializationException {
-        element.setValue(readValueAsString("Cannot update the property", idShortPath, valueOnly));
-    }
-
-    static String readValueAsString(String msg, String idShortPath, JsonNode valueOnly)
-        throws ValueOnlySerializationException {
-        if(valueOnly == null || valueOnly.isNull()) {
-            return null;
-        }
-        if (!valueOnly.isObject()) {
-            throw new ValueOnlySerializationException(
-                msg + " at idShort path '" + idShortPath +
-                        "', as the passed value is not a JSON object.", idShortPath);
-        }
-        if(valueOnly.isArray()) {
-            throw new ValueOnlySerializationException(
-                msg + " at idShort path '" + idShortPath +
-                "', as the passed value is a JSON array.", idShortPath);
-        }
-        return valueOnly.get(valueOnly.fieldNames().next()).asText();
+        JsonNode valueNode = valueFromNode("Cannot update the property", idShortPath, valueOnly);
+        element.setValue(readValueAsString("Cannot update the property", idShortPath, valueNode));
     }
 }

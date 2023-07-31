@@ -51,4 +51,30 @@ abstract class AbstractMapper<T> {
      * will be in an inconsistent state. If you cannot handle such situations, pass a copy of the original element.
      */
     abstract void update(JsonNode valueOnly) throws ValueOnlySerializationException;
+
+    /**
+     * Verifies the given object is neither an object nor an array
+     * @param msg Prefix for exception messages.
+     * @param idShortPath short path of ID being included to exception messages.
+     * @param value the node to return as text
+     * @return given {@code value} as text if it's neither an object nor an array, otherwise throws exception.
+     * @throws ValueOnlySerializationException throw if node is object or array.
+     */
+    String readValueAsString(String msg, String idShortPath, JsonNode value)
+            throws ValueOnlySerializationException {
+        if (value == null || value.isNull()) {
+            return null;
+        }
+        if (value.isObject()) {
+            throw new ValueOnlySerializationException(
+                    msg + " at idShort path '" + idShortPath +
+                            "', as the passed value is a JSON object.", idShortPath);
+        }
+        if (value.isArray()) {
+            throw new ValueOnlySerializationException(
+                    msg + " at idShort path '" + idShortPath +
+                            "', as the passed value is a JSON array.", idShortPath);
+        }
+        return value.asText();
+    }
 }
