@@ -55,7 +55,6 @@ public class JsonValueOnlySerialiser extends JsonSerializer {
 
     }
 
-
     /**
      * The default constructor creates a value-only mapper which serializes and deserializes submodels and submodel
      * elements to a compact value-only JSON string.
@@ -80,7 +79,7 @@ public class JsonValueOnlySerialiser extends JsonSerializer {
     public String serialise(Submodel submodel) throws ValueOnlySerializationException {
         ElementsCollectionMapper mapper = new ElementsCollectionMapper(submodel.getSubmodelElements(), "$");
         JsonNode node = mapper.toJson();
-        return prettyString ? node.toPrettyString() : node.toString();
+        return stringify(node);
     }
 
     /**
@@ -111,7 +110,7 @@ public class JsonValueOnlySerialiser extends JsonSerializer {
                 "$");
         }
         JsonNode node = mapper.toJson();
-        return prettyString ? node.toPrettyString() : node.toString();
+        return stringify(node);
     }
 
     /**
@@ -127,5 +126,9 @@ public class JsonValueOnlySerialiser extends JsonSerializer {
         JsonNode node = readTree(valueOnly);
         AbstractMapper mapper = ElementsCollectionMapper.createMapper(element, "$");
         mapper.update(node);
+    }
+
+    private String stringify(JsonNode node) {
+        return prettyString ? node.toPrettyString() : node.toString();
     }
 }
