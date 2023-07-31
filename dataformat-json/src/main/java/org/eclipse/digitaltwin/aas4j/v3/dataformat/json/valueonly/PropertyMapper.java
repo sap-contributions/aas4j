@@ -15,9 +15,10 @@
  */
 package org.eclipse.digitaltwin.aas4j.v3.dataformat.json.valueonly;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import org.eclipse.digitaltwin.aas4j.v3.model.Property;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /**
  * Property is serialized as ${Property/idShort}: ${Property/value} where ${Property/value} is the JSON serialization
@@ -32,7 +33,10 @@ class PropertyMapper extends AbstractMapper<Property> {
     @Override
     JsonNode toJson() throws ValueOnlySerializationException {
         try {
-            return ValueConverter.convert(element.getValueType(), element.getValue());
+            JsonNode valueNode = ValueConverter.convert(element.getValueType(), element.getValue());
+            ObjectNode objectNode = JsonNodeFactory.instance.objectNode();
+            objectNode.set(element.getIdShort(), valueNode);
+            return objectNode;
         } catch (NumberFormatException ex) {
             throw new ValueOnlySerializationException("Cannot serialize the property with idShort path '" +
                 idShortPath + "': " + ex.getMessage(), idShortPath);
@@ -49,16 +53,16 @@ class PropertyMapper extends AbstractMapper<Property> {
         if(valueOnly == null || valueOnly.isNull()) {
             return null;
         }
-        if(valueOnly.isObject()) {
+        if (!valueOnly.isObject()) {
             throw new ValueOnlySerializationException(
                 msg + " at idShort path '" + idShortPath +
-                "', as the passed value is a JSON object.", idShortPath);
+                        "', as the passed value is not a JSON object.", idShortPath);
         }
         if(valueOnly.isArray()) {
             throw new ValueOnlySerializationException(
                 msg + " at idShort path '" + idShortPath +
                 "', as the passed value is a JSON array.", idShortPath);
         }
-        return valueOnly.asText();
+        return valueOnly.get(valueOnly.fieldNames().next()).asText();
     }
 }
