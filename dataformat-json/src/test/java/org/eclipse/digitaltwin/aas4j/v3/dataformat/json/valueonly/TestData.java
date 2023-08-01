@@ -36,7 +36,6 @@ import org.eclipse.digitaltwin.aas4j.v3.model.ModellingKind;
 
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.List;
 
 public class TestData {
     public static final Entity ENTITY = new DefaultEntity.Builder()
