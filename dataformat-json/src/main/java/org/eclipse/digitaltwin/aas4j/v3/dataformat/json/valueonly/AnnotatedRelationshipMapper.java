@@ -44,9 +44,10 @@ class AnnotatedRelationshipMapper extends RelationshipElementMapper {
         if(!annotations.isEmpty()) {
             ElementsListMapper<AnnotatedRelationshipElement> listMapper = new ElementsListMapper<>(
                     annotatedRelationshipElement, annotations, idShortPath + "." + ANNOTATIONS);
-            valueNode.set(ANNOTATIONS, listMapper.toJson());
+            ObjectNode dataNode = (ObjectNode) valueNode.get(element.getIdShort());
+            dataNode.set(ANNOTATIONS, listMapper.toJson());
         }
-        return asValueNode(valueNode);
+        return valueNode;
     }
 
     @Override

@@ -40,7 +40,7 @@ class RelationshipElementMapper extends AbstractMapper<RelationshipElement> {
         JsonValueOnlySerialiser serialiser = new JsonValueOnlySerialiser();
         node.set(FIRST, serialiser.toJson(element.getFirst()));
         node.set(SECOND, serialiser.toJson(element.getSecond()));
-        return node;
+        return asValueNode(node);
     }
 
     @Override
