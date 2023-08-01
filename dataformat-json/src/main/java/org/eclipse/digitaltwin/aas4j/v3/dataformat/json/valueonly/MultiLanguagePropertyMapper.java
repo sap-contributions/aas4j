@@ -42,7 +42,7 @@ class MultiLanguagePropertyMapper extends AbstractMapper<MultiLanguageProperty> 
     @Override
     public JsonNode toJson() throws ValueOnlySerializationException {
         List<LangStringTextType> langTexts = element.getValue();
-        if(langTexts == null || langTexts.size() == 0) {
+        if(langTexts == null || langTexts.isEmpty()) {
             return NullNode.instance;
         }
         ObjectNode node = JsonNodeFactory.instance.objectNode();

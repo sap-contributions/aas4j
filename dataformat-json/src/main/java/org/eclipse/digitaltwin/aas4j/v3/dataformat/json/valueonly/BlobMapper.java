@@ -62,7 +62,7 @@ class BlobMapper extends AbstractMapper<Blob> {
         JsonNode valueNode = valueOnly.get(VALUE);
         if(valueNode == null || valueNode.isNull()) {
             element.setValue(null);
-        } else if(contentNode.isTextual()) {
+        } else if(contentNode != null && contentNode.isTextual()) {
             element.setValue(Base64.getDecoder().decode(valueNode.asText()));
         } else {
             throw new ValueOnlySerializationException(
