@@ -30,11 +30,13 @@ class ReferenceElementMapper extends AbstractMapper<ReferenceElement> {
 
     @Override
     public JsonNode toJson() throws ValueOnlySerializationException {
-        return new JsonValueOnlySerialiser().toJson(element.getValue());
+        JsonNode value = new JsonValueOnlySerialiser().toJson(element.getValue());
+        return asValueNode(value);
     }
 
     @Override
     public void update(JsonNode valueOnly) throws ValueOnlySerializationException {
-        element.setValue(new JsonValueOnlyDeserialiser().deserialiseReference(valueOnly, idShortPath));
+        JsonNode reference = valueFromNode("Cannot update ReferenceElement", idShortPath, valueOnly);
+        element.setValue(new JsonValueOnlyDeserialiser().deserialiseReference(reference, idShortPath));
     }
 }
