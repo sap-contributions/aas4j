@@ -66,7 +66,7 @@ class EntityMapper extends AbstractMapper<Entity> {
             node.set(SPECIFIC_ASSET_ID, assetIdNode);
         }
         node.set(ENTITY_TYPE, new TextNode(EnumSerializer.serializeEnumName(element.getEntityType().name())));
-        return node;
+         return asValueNode(node);
     }
 
     @Override
@@ -90,7 +90,6 @@ class EntityMapper extends AbstractMapper<Entity> {
         }
         JsonNode specificAssetIdNode = valueOnly.get(SPECIFIC_ASSET_ID);
         if(specificAssetIdNode != null) {
-            List<SpecificAssetId> specificAssetIds = element.getSpecificAssetIds();
             if(!specificAssetIdNode.isObject()) {
                 throw new ValueOnlySerializationException("Cannot update the Entity at idShort path '" +
                     idShortPath + "', as the passed " + SPECIFIC_ASSET_ID + " is not an object.", idShortPath);

@@ -44,7 +44,7 @@ public class TestData {
             .entityType(EntityType.SELF_MANAGED_ENTITY)
             .globalAssetId("Global Asset Id")
         .statements(new DefaultProperty.Builder()
-            .idShort("MaxRotationSpeed")
+            .idShort("maxRotationSpeed")
             .valueType(DataTypeDefXsd.INT)
             .value("5000")
             .build())
