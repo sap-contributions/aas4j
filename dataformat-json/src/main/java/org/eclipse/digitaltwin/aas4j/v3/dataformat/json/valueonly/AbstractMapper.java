@@ -15,13 +15,17 @@
  */
 package org.eclipse.digitaltwin.aas4j.v3.dataformat.json.valueonly;
 
+import java.util.Iterator;
+
+import org.eclipse.digitaltwin.aas4j.v3.model.Referable;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 
 /**
  * The abstract base class for all value-only mappers.
  * @param <T> The type of the mapped elements.
  */
-abstract class AbstractMapper<T> {
+abstract class AbstractMapper<T extends Referable> implements ValueOnlyMapper {
     protected final T element;
     protected final String idShortPath;
 
@@ -36,21 +40,27 @@ abstract class AbstractMapper<T> {
         this.idShortPath = idShortPath;
     }
 
-    /**
-     * This method converts the corresponding element to a value-only JSON node.
-     * @return the corresponding JSON node.
-     * @throws ValueOnlySerializationException with information about the idShort path.
-     */
-    abstract JsonNode toJson() throws ValueOnlySerializationException;
+    JsonNode asValueNode(JsonNode value) {
+        return JsonNodeFactory.instance.objectNode().set(element.getIdShort(), value);
+    }
 
-    /**
-     * Updates the corresponding element according the passed valueOnly JSON node.
-     * @param valueOnly the value only JSON node.
-     * @throws ValueOnlySerializationException with information about the idShort path.
-     * <br><b>Note:</b>The update is not an atomic operation and if an exception is thrown, the corresponding element
-     * will be in an inconsistent state. If you cannot handle such situations, pass a copy of the original element.
-     */
-    abstract void update(JsonNode valueOnly) throws ValueOnlySerializationException;
+    static JsonNode valueFromNode(String msg, String idShortPath, JsonNode valueOnly) {
+        Iterator<String> fieldNames = valueOnly.fieldNames();
+        if (!fieldNames.hasNext()) {
+            // throw exception as value-only nodes must have exactly one field!
+            throw new ValueOnlySerializationException(
+                    msg + " at idShort path '" + idShortPath +
+                            "', as the passed value does have no fields!", idShortPath);
+        }
+        String fieldName = fieldNames.next();
+        if (fieldNames.hasNext()) {
+            // throw exception as value-only nodes must have exactly one field!
+            throw new ValueOnlySerializationException(
+                    msg + " at idShort path '" + idShortPath +
+                            "', as the passed value has more than one field!", idShortPath);
+        }
+        return valueOnly.get(fieldName);
+    }
 
     /**
      * Verifies the given object is neither an object nor an array

@@ -15,13 +15,13 @@
  */
 package org.eclipse.digitaltwin.aas4j.v3.dataformat.json.valueonly;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.json.JsonDeserializer;
-import org.eclipse.digitaltwin.aas4j.v3.dataformat.json.JsonSerializer;
 import org.eclipse.digitaltwin.aas4j.v3.model.Reference;
 import org.eclipse.digitaltwin.aas4j.v3.model.Submodel;
 import org.eclipse.digitaltwin.aas4j.v3.model.SubmodelElement;
+import org.eclipse.digitaltwin.aas4j.v3.model.SubmodelElementCollection;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * This class implements the value-only Serialization in JSON format, as described in section 11.4.2 of <a
@@ -89,7 +89,8 @@ public class JsonValueOnlyDeserialiser extends JsonDeserializer {
      */
     public void deserialise(Submodel submodel, String valueOnly) throws ValueOnlySerializationException {
         JsonNode node = readTree(valueOnly);
-        ElementsCollectionMapper mapper = new ElementsCollectionMapper(submodel.getSubmodelElements(), "$");
+        SubmodelElementCollection elementCollection = (SubmodelElementCollection) submodel;
+        ElementsCollectionMapper mapper = new ElementsCollectionMapper(elementCollection, elementCollection.getValue(), "$");
         mapper.update(node);
     }
 
@@ -105,7 +106,7 @@ public class JsonValueOnlyDeserialiser extends JsonDeserializer {
      */
     public void deserialise(SubmodelElement element, String valueOnly) throws ValueOnlySerializationException {
         JsonNode node = readTree(valueOnly);
-        AbstractMapper mapper = ElementsCollectionMapper.createMapper(element, "$");
+        ValueOnlyMapper mapper = ValueOnlyMapper.createMapper(element, "$");
         mapper.update(node);
     }
 }

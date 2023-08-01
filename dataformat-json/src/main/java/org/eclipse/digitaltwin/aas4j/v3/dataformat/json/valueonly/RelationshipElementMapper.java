@@ -15,11 +15,10 @@
  */
 package org.eclipse.digitaltwin.aas4j.v3.dataformat.json.valueonly;
 
+import org.eclipse.digitaltwin.aas4j.v3.model.RelationshipElement;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import org.eclipse.digitaltwin.aas4j.v3.model.RelationshipElement;
 
 /**
  * RelationshipElement is serialized as named JSON object with ${RelationshipElement/idShort} as the name of the
@@ -27,7 +26,7 @@ import org.eclipse.digitaltwin.aas4j.v3.model.RelationshipElement;
  * named "second". Their corresponding values are ${RelationshipElement/first} resp. ${Relationship/second}. The values
  * are serialized according to the serialization of a Reference.
  */
-class RelationshipElementMapper extends AbstractReferableMapper<RelationshipElement> {
+class RelationshipElementMapper extends AbstractMapper<RelationshipElement> {
     private static final String FIRST = "first";
     private static final String SECOND = "second";
 
@@ -36,7 +35,7 @@ class RelationshipElementMapper extends AbstractReferableMapper<RelationshipElem
     }
 
     @Override
-    JsonNode toJson() throws ValueOnlySerializationException {
+    public JsonNode toJson() throws ValueOnlySerializationException {
         ObjectNode node = JsonNodeFactory.instance.objectNode();
         JsonValueOnlySerialiser serialiser = new JsonValueOnlySerialiser();
         node.set(FIRST, serialiser.toJson(element.getFirst()));
@@ -45,7 +44,7 @@ class RelationshipElementMapper extends AbstractReferableMapper<RelationshipElem
     }
 
     @Override
-    void update(JsonNode valueOnly) throws ValueOnlySerializationException {
+    public void update(JsonNode valueOnly) throws ValueOnlySerializationException {
         JsonValueOnlyDeserialiser deserialiser = new JsonValueOnlyDeserialiser();
         JsonNode value = valueFromNode("Cannot update the relationship element", idShortPath, valueOnly);
         element.setFirst(deserialiser.deserialiseReference(value.get(FIRST), idShortPath + "." + FIRST));

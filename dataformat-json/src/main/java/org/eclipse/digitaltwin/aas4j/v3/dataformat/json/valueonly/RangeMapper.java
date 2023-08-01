@@ -15,19 +15,18 @@
  */
 package org.eclipse.digitaltwin.aas4j.v3.dataformat.json.valueonly;
 
+import org.eclipse.digitaltwin.aas4j.v3.model.DataTypeDefXsd;
+import org.eclipse.digitaltwin.aas4j.v3.model.Range;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import org.eclipse.digitaltwin.aas4j.v3.model.DataTypeDefXsd;
-import org.eclipse.digitaltwin.aas4j.v3.model.Range;
 
 /**
  * Range is serialized as named JSON object with ${Range/idShort} as the name of the containing JSON property. The JSON
  * object contains two JSON properties. The first is named "min". The second is named "max". Their corresponding values
  * are ${Range/min} and ${Range/max}.
  */
-class RangeMapper extends AbstractReferableMapper<Range> {
+class RangeMapper extends AbstractMapper<Range> {
     private static final String MIN = "min";
     private static final String MAX = "max";
 
@@ -36,7 +35,7 @@ class RangeMapper extends AbstractReferableMapper<Range> {
     }
 
     @Override
-    JsonNode toJson() throws ValueOnlySerializationException {
+    public JsonNode toJson() throws ValueOnlySerializationException {
         try {
             ObjectNode node = JsonNodeFactory.instance.objectNode();
             DataTypeDefXsd valueType = element.getValueType();
@@ -50,7 +49,7 @@ class RangeMapper extends AbstractReferableMapper<Range> {
     }
 
     @Override
-    void update(JsonNode valueOnly) throws ValueOnlySerializationException {
+    public void update(JsonNode valueOnly) throws ValueOnlySerializationException {
         JsonNode valueNode = valueFromNode("Cannot update Range", idShortPath, valueOnly);
         element.setMax(readValueAsString("Cannot update Range." + MAX, idShortPath, valueNode.get(MAX)));
         element.setMin(readValueAsString("Cannot update Range." + MIN, idShortPath, valueNode.get(MIN)));

@@ -15,18 +15,18 @@
  */
 package org.eclipse.digitaltwin.aas4j.v3.dataformat.json.valueonly;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.core.deserialization.EnumDeserializer;
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.core.serialization.EnumSerializer;
 import org.eclipse.digitaltwin.aas4j.v3.model.Entity;
 import org.eclipse.digitaltwin.aas4j.v3.model.EntityType;
 import org.eclipse.digitaltwin.aas4j.v3.model.SpecificAssetId;
-
-import java.util.Iterator;
-import java.util.List;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
 
 /**
  * Entity is serialized as named JSON object with ${Entity/idShort} as the name of the containing JSON property. The
@@ -48,17 +48,17 @@ class EntityMapper extends AbstractMapper<Entity> {
     }
 
     @Override
-    JsonNode toJson() throws ValueOnlySerializationException {
+    public JsonNode toJson() throws ValueOnlySerializationException {
         ObjectNode node = JsonNodeFactory.instance.objectNode();
-        ElementsListMapper statementsMapper = new ElementsListMapper(
-            element.getStatements(), idShortPath + "." + STATEMENTS);
+        ElementsListMapper<Entity> statementsMapper = new ElementsListMapper<>(
+                element, element.getStatements(), idShortPath + "." + STATEMENTS);
         node.set(STATEMENTS, statementsMapper.toJson());
         String globalAssetId = element.getGlobalAssetId();
         if(globalAssetId != null) {
             node.set(GLOBAL_ASSET_ID, new TextNode(globalAssetId));
         }
         List<SpecificAssetId> specificAssetIds = element.getSpecificAssetIds();
-        if(specificAssetIds != null && specificAssetIds.size() > 0) {
+        if(specificAssetIds != null && !specificAssetIds.isEmpty()) {
             ObjectNode assetIdNode = JsonNodeFactory.instance.objectNode();
             for (SpecificAssetId assetId : specificAssetIds) {
                 assetIdNode.set(assetId.getValue(), new TextNode(assetId.getName()));
@@ -70,13 +70,13 @@ class EntityMapper extends AbstractMapper<Entity> {
     }
 
     @Override
-    void update(JsonNode valueOnly) throws ValueOnlySerializationException {
+    public void update(JsonNode valueOnly) throws ValueOnlySerializationException {
         JsonNode statementsNode = valueOnly.get(STATEMENTS);
         if(statementsNode == null) {
             element.getStatements().clear();
         } else {
-            ElementsListMapper statementsMapper = new ElementsListMapper(
-                element.getStatements(), idShortPath + "." + STATEMENTS);
+            ElementsListMapper<Entity> statementsMapper = new ElementsListMapper<>(
+                    element, element.getStatements(), idShortPath + "." + STATEMENTS);
             statementsMapper.update(statementsNode);
         }
         JsonNode globalAssetIdNode = valueOnly.get(GLOBAL_ASSET_ID);

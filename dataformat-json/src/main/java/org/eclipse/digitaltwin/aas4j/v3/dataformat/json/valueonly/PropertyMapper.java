@@ -17,21 +17,19 @@ package org.eclipse.digitaltwin.aas4j.v3.dataformat.json.valueonly;
 
 import org.eclipse.digitaltwin.aas4j.v3.model.Property;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /**
  * Property is serialized as ${Property/idShort}: ${Property/value} where ${Property/value} is the JSON serialization
  * of the respective property’s value in accordance with the data type to value mapping.
  * @see ValueConverter
  */
-class PropertyMapper extends AbstractReferableMapper<Property> {
+class PropertyMapper extends AbstractMapper<Property> {
     PropertyMapper(Property property, String idShortPath) {
         super(property, idShortPath);
     }
 
     @Override
-    JsonNode toJson() throws ValueOnlySerializationException {
+    public JsonNode toJson() throws ValueOnlySerializationException {
         try {
             JsonNode value = ValueConverter.convert(element.getValueType(), element.getValue());
             return asValueNode(value);
@@ -42,7 +40,7 @@ class PropertyMapper extends AbstractReferableMapper<Property> {
     }
 
     @Override
-    void update(JsonNode valueOnly) throws ValueOnlySerializationException {
+    public void update(JsonNode valueOnly) throws ValueOnlySerializationException {
         JsonNode valueNode = valueFromNode("Cannot update the property", idShortPath, valueOnly);
         element.setValue(readValueAsString("Cannot update the property", idShortPath, valueNode));
     }
