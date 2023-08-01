@@ -92,6 +92,13 @@ public class JsonValueOnlyDeserialiserTest {
     }
 
     @Test
+    public void testUpdatePropertyString() {
+        String valueOnly = serialiser.serialise(TestData.PROPERTY_STRING_UPDATED);
+        deserialiser.deserialise(TestData.PROPERTY_STRING, valueOnly);
+        assertEquals(TestData.PROPERTY_STRING_UPDATED, TestData.PROPERTY_STRING);
+    }
+
+    @Test
     public void testUpdateRefElementGlobal() throws ValueOnlySerializationException {
         String valueOnly = serialiser.serialise(TestData.REFERENCE_ELEMENT_GLOBAL_UPDATED);
         deserialiser.deserialise(TestData.REFERENCE_ELEMENT_GLOBAL, valueOnly);

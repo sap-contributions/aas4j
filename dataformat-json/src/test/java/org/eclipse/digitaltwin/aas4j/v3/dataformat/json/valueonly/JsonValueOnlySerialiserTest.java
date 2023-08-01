@@ -45,7 +45,7 @@ public class JsonValueOnlySerialiserTest {
     }
 
     @Test
-    public void testSerializeProperty() throws ValueOnlySerializationException, IOException, JSONException {
+    public void testSerializeIntProperty() throws ValueOnlySerializationException, IOException, JSONException {
         String valueOnly = serialiser.serialise(TestData.PROPERTY_INT);
         String expected = readValueOnlyFile("property_int.json");
         JSONAssert.assertEquals(expected, valueOnly, JSONCompareMode.NON_EXTENSIBLE);
@@ -90,6 +90,13 @@ public class JsonValueOnlySerialiserTest {
     public void testSerializePropertyDatetime() throws IOException, ValueOnlySerializationException, JSONException {
         String valueOnly = serialiser.serialise(TestData.PROPERTY_DATETIME);
         String expected = readValueOnlyFile("date_time_property.json");
+        JSONAssert.assertEquals(expected, valueOnly, JSONCompareMode.NON_EXTENSIBLE);
+    }
+
+    @Test
+    public void testSerializePropertyString() throws IOException, JSONException {
+        String valueOnly = serialiser.serialise(TestData.PROPERTY_STRING);
+        String expected = readValueOnlyFile("property_string.json");
         JSONAssert.assertEquals(expected, valueOnly, JSONCompareMode.NON_EXTENSIBLE);
     }
 
