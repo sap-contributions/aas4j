@@ -19,7 +19,6 @@ import org.eclipse.digitaltwin.aas4j.v3.dataformat.json.JsonDeserializer;
 import org.eclipse.digitaltwin.aas4j.v3.model.Reference;
 import org.eclipse.digitaltwin.aas4j.v3.model.Submodel;
 import org.eclipse.digitaltwin.aas4j.v3.model.SubmodelElement;
-import org.eclipse.digitaltwin.aas4j.v3.model.SubmodelElementCollection;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -89,8 +88,7 @@ public class JsonValueOnlyDeserialiser extends JsonDeserializer {
      */
     public void deserialise(Submodel submodel, String valueOnly) throws ValueOnlySerializationException {
         JsonNode node = readTree(valueOnly);
-        SubmodelElementCollection elementCollection = (SubmodelElementCollection) submodel;
-        ElementsCollectionMapper mapper = new ElementsCollectionMapper(elementCollection, elementCollection.getValue(), "$");
+        SubmodelMapper mapper = new SubmodelMapper(submodel, "$");
         mapper.update(node);
     }
 
