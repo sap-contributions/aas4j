@@ -71,7 +71,8 @@ class EntityMapper extends AbstractMapper<Entity> {
 
     @Override
     public void update(JsonNode valueOnly) throws ValueOnlySerializationException {
-        JsonNode statementsNode = valueOnly.get(STATEMENTS);
+        JsonNode value = valueFromNode("Cannot update entity", idShortPath, valueOnly);
+        JsonNode statementsNode = value.get(STATEMENTS);
         if(statementsNode == null) {
             element.getStatements().clear();
         } else {
@@ -79,7 +80,7 @@ class EntityMapper extends AbstractMapper<Entity> {
                     element, element.getStatements(), idShortPath + "." + STATEMENTS);
             statementsMapper.update(statementsNode);
         }
-        JsonNode globalAssetIdNode = valueOnly.get(GLOBAL_ASSET_ID);
+        JsonNode globalAssetIdNode = value.get(GLOBAL_ASSET_ID);
         if(globalAssetIdNode == null || globalAssetIdNode.isNull()) {
             element.setGlobalAssetId(null);
         } else if(globalAssetIdNode.isTextual()) {
@@ -88,7 +89,7 @@ class EntityMapper extends AbstractMapper<Entity> {
             throw new ValueOnlySerializationException("Cannot update the Entity at idShort path '" +
                 idShortPath + "', as the passed " + GLOBAL_ASSET_ID + " is not a string.", idShortPath);
         }
-        JsonNode specificAssetIdNode = valueOnly.get(SPECIFIC_ASSET_ID);
+        JsonNode specificAssetIdNode = value.get(SPECIFIC_ASSET_ID);
         if(specificAssetIdNode != null) {
             if(!specificAssetIdNode.isObject()) {
                 throw new ValueOnlySerializationException("Cannot update the Entity at idShort path '" +
@@ -96,7 +97,7 @@ class EntityMapper extends AbstractMapper<Entity> {
             }
             updateSpecificAssetIds(element.getSpecificAssetIds(), (ObjectNode) specificAssetIdNode);
         }
-        JsonNode entityTypeNode = valueOnly.get(ENTITY_TYPE);
+        JsonNode entityTypeNode = value.get(ENTITY_TYPE);
         if(entityTypeNode == null || !entityTypeNode.isTextual()) {
             throw new ValueOnlySerializationException("Cannot update the Entity at idShort path '" +
                 idShortPath + "', as its type is not set as string property '" + ENTITY_TYPE + "'.", idShortPath);
