@@ -36,10 +36,10 @@ class ElementsCollectionMapper extends AbstractListMapper<SubmodelElementCollect
 
     @Override
     public JsonNode toJson() throws ValueOnlySerializationException {
-        ObjectNode node = JsonNodeFactory.instance.objectNode();
+        ObjectNode elementsNode = JsonNodeFactory.instance.objectNode();
         for (SubmodelElement submodelElement : element.getValue()) {
             String idShort = submodelElement.getIdShort();
-            if(node.has(idShort)) {
+            if(elementsNode.has(idShort)) {
                 throw new ValueOnlySerializationException("Duplicated idShort name '" + idShort +
                     "' under idShort path '" + idShortPath + "'.", idShortPath);
             }
@@ -48,9 +48,14 @@ class ElementsCollectionMapper extends AbstractListMapper<SubmodelElementCollect
                 // This type of submodel elements are not serialized in value-only format.
                 continue;
             }
-            node.set(idShort, mapper.toJson());
+            JsonNode mapperNode = mapper.toJson();
+            if (elementsNode.isObject()) {
+                elementsNode.setAll((ObjectNode) mapperNode);
+            } else {
+                elementsNode.set(idShort, mapperNode);
+            }
         }
-        return node;
+        return asValueNode(elementsNode);
     }
 
     @Override
