@@ -181,20 +181,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <excludes>
-                        <exclude>**/org/eclipse/digitaltwin/aas4j/v3/dataformat/json/valueonly/JsonValueOnlyDeserialiserTest.java</exclude>
-                        <exclude>**/org/eclipse/digitaltwin/aas4j/v3/dataformat/json/valueonly/JsonValueOnlySerialiserTest.java</exclude>
-                    </excludes>
-                    <includes>
-                        <include>**/org/eclipse/digitaltwin/aas4j/v3/dataformat/json/valueonly/JsonValueOnlyTestSuite.java</include>
-                    </includes>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
