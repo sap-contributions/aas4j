@@ -26,7 +26,6 @@ import java.util.List;
  */
 @KnownSubtypes({
     @KnownSubtypes.Type(value = SubmodelElementAttributes.class),
-    @KnownSubtypes.Type(value = SubmodelMetadata.class),
     @KnownSubtypes.Type(value = SubmodelElement.class),
     @KnownSubtypes.Type(value = Submodel.class)
 })

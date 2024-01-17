@@ -19,7 +19,7 @@ import org.eclipse.digitaltwin.aas4j.v3.model.annotations.IRI;
 import org.eclipse.digitaltwin.aas4j.v3.model.annotations.KnownSubtypes;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultOperationRequest;
 
-import java.math.BigInteger;
+import java.util.List;
 
 
 /**
@@ -33,10 +33,10 @@ public interface OperationRequest {
      *
      * More information under https://admin-shell.io/aas/3/0/OperationRequest/inoutputArguments
      *
-     * @return Returns the OperationVariable for the property inoutputArguments.
+     * @return Returns the List of OperationVariables for the property inoutputArguments.
      */
     @IRI("https://admin-shell.io/aas/3/0/OperationRequest/inoutputArguments")
-    OperationVariable getInoutputArguments();
+    List<OperationVariable> getInoutputArguments();
 
     /**
      *
@@ -44,16 +44,16 @@ public interface OperationRequest {
      *
      * @param inoutputArguments desired value for the property inoutputArguments.
      */
-    void setInoutputArguments(OperationVariable inoutputArguments);
+    void setInoutputArguments(List<OperationVariable> inoutputArguments);
 
     /**
      *
      * More information under https://admin-shell.io/aas/3/0/OperationRequest/inputArguments
      *
-     * @return Returns the OperationVariable for the property inputArguments.
+     * @return Returns the List of OperationVariables for the property inputArguments.
      */
     @IRI("https://admin-shell.io/aas/3/0/OperationRequest/inputArguments")
-    OperationVariable getInputArguments();
+    List<OperationVariable> getInputArguments();
 
     /**
      *
@@ -61,40 +61,23 @@ public interface OperationRequest {
      *
      * @param inputArguments desired value for the property inputArguments.
      */
-    void setInputArguments(OperationVariable inputArguments);
+    void setInputArguments(List<OperationVariable> inputArguments);
 
     /**
      *
-     * More information under https://admin-shell.io/aas/3/0/OperationRequest/requestId
+     * More information under https://admin-shell.io/aas/3/0/OperationRequest/clientTimeoutDuration
      *
-     * @return Returns the String for the property requestId.
+     * @return Returns the String for the property clientTimeoutDuration.
      */
-    @IRI("https://admin-shell.io/aas/3/0/OperationRequest/requestId")
-    String getRequestId();
+    @IRI("https://admin-shell.io/aas/3/0/OperationRequest/clientTimeoutDuration")
+    String getClientTimeoutDuration();
 
     /**
      *
-     * More information under https://admin-shell.io/aas/3/0/OperationRequest/requestId
+     * More information under https://admin-shell.io/aas/3/0/OperationRequest/clientTimeoutDuration
      *
-     * @param requestId desired value for the property requestId.
+     * @param clientTimeoutDuration desired value for the property clientTimeoutDuration.
      */
-    void setRequestId(String requestId);
-
-    /**
-     *
-     * More information under https://admin-shell.io/aas/3/0/OperationRequest/timeout
-     *
-     * @return Returns the BigInteger for the property timeout.
-     */
-    @IRI("https://admin-shell.io/aas/3/0/OperationRequest/timeout")
-    BigInteger getTimeout();
-
-    /**
-     *
-     * More information under https://admin-shell.io/aas/3/0/OperationRequest/timeout
-     *
-     * @param timeout desired value for the property timeout.
-     */
-    void setTimeout(BigInteger timeout);
+    void setClientTimeoutDuration(String clientTimeoutDuration);
 
 }

@@ -24,21 +24,9 @@ import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultSubmodelElementAttribu
 /**
 */
 @KnownSubtypes({
-    @KnownSubtypes.Type(value = DefaultSubmodelElementAttributes.class),
-    @KnownSubtypes.Type(value = AnnotatedRelationshipElementMetadata.class),
-    @KnownSubtypes.Type(value = BasicEventElementMetadata.class),
-    @KnownSubtypes.Type(value = BlobMetadata.class),
-    @KnownSubtypes.Type(value = CapabilityMetadata.class),
-    @KnownSubtypes.Type(value = EntityMetadata.class),
-    @KnownSubtypes.Type(value = MultiLanguagePropertyMetadata.class),
-    @KnownSubtypes.Type(value = OperationMetadata.class),
-    @KnownSubtypes.Type(value = PropertyMetadata.class),
-    @KnownSubtypes.Type(value = RangeMetadata.class),
-    @KnownSubtypes.Type(value = ReferenceElementMetadata.class),
-    @KnownSubtypes.Type(value = SubmodelElementListMetadata.class),
-    @KnownSubtypes.Type(value = SubmodelElementCollectionMetadata.class)
+    @KnownSubtypes.Type(value = DefaultSubmodelElementAttributes.class)
 })
-public interface SubmodelElementAttributes extends HasDataSpecification, Referable, HasSemantics, Qualifiable {
+public interface SubmodelElementAttributes extends Referable, HasDataSpecification, HasSemantics, Qualifiable {
 
     /**
      *
