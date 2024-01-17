@@ -26,7 +26,6 @@ import java.util.List;
  */
 @KnownSubtypes({
     @KnownSubtypes.Type(value = AdministrativeInformation.class),
-    @KnownSubtypes.Type(value = SubmodelElementAttributes.class),
     @KnownSubtypes.Type(value = AssetAdministrationShell.class),
     @KnownSubtypes.Type(value = ConceptDescription.class),
     @KnownSubtypes.Type(value = SubmodelElement.class),
