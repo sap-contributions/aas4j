@@ -17,8 +17,10 @@
 package org.eclipse.digitaltwin.aas4j.v3.dataformat.json;
 
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.SerializationException;
+import org.eclipse.digitaltwin.aas4j.v3.dataformat.json.util.Examples;
 import org.eclipse.digitaltwin.aas4j.v3.model.AssetAdministrationShellDescriptor;
 import org.json.JSONException;
+import org.junit.Assert;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
@@ -40,8 +42,8 @@ public class JsonAssetAdministrationShellDescriptorSerializerTest {
 
     @Test
     public void testReadAssetAdministrationShellDescriptor() throws IOException, SerializationException, JSONException {
-        File fileExpected = new File("src/test/resources/assetAdministrationShellDescriptor.json");
-
+        File fileExpected = new File("src/test/resources/AssetAdministrationShellDescriptor.json");
+        Assert.assertTrue(fileExpected.exists());
         validateAndCompare(fileExpected, JsonAssetAdministrationShellDescriptorDeserializerTest.createAasDescriptor());
     }
 
