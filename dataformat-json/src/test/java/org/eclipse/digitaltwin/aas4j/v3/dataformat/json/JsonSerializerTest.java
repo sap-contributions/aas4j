@@ -52,7 +52,8 @@ public class JsonSerializerTest {
 
     @Test
     public void testSerializeNull() throws SerializationException {
-        assertEquals("null", new JsonSerializer().write(null));
+        Environment env = null;
+        assertEquals("null", new JsonSerializer().write(env));
     }
 
     @Test

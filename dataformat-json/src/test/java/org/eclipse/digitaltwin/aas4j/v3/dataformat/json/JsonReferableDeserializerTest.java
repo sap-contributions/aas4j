@@ -103,7 +103,7 @@ public class JsonReferableDeserializerTest {
         Submodel actual = new JsonDeserializer().readReferable(Examples.SUBMODEL.fileContentStream(), Submodel.class);
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void testReadSubmodels() throws DeserializationException {
         List<Submodel> expected = Examples.SUBMODEL_LIST_OF.getModel();
