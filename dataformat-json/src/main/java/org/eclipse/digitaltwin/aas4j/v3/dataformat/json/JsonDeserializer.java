@@ -21,12 +21,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.DeserializationException;
-import org.eclipse.digitaltwin.aas4j.v3.model.AssetAdministrationShellDescriptor;
 import org.eclipse.digitaltwin.aas4j.v3.model.Environment;
 import org.eclipse.digitaltwin.aas4j.v3.model.Referable;
-import org.eclipse.digitaltwin.aas4j.v3.model.Reference;
-import org.eclipse.digitaltwin.aas4j.v3.model.SpecificAssetId;
-import org.eclipse.digitaltwin.aas4j.v3.model.SubmodelDescriptor;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -251,7 +247,7 @@ public class JsonDeserializer {
      * @throws DeserializationException if deserialization of referable fails
      */
     public <T extends Referable> List<T> readReferables(JsonNode root, Class<T> outputClass)
-            throws DeserializationException {
+        throws DeserializationException {
         return readList(root, outputClass);
     }
 
@@ -265,8 +261,8 @@ public class JsonDeserializer {
      * @throws DeserializationException if deserialization fails
      */
     public <T extends Referable> List<T> readReferables(InputStream src, Class<T> outputClass)
-            throws DeserializationException {
-        return readReferables(src, DEFAULT_CHARSET, outputClass);
+        throws DeserializationException {
+        return readList(src, DEFAULT_CHARSET, outputClass);
     }
 
     /**
@@ -280,7 +276,7 @@ public class JsonDeserializer {
      * @throws DeserializationException if deserialization fails
      */
     public <T extends Referable> List<T> readReferables(InputStream src, Charset charset, Class<T> outputClass)
-            throws DeserializationException {
+        throws DeserializationException {
         return readList(src, charset, outputClass);
     }
 
@@ -295,8 +291,8 @@ public class JsonDeserializer {
      * @throws java.io.FileNotFoundException if file is not found
      */
     public <T extends Referable> List<T> readReferables(File src, Class<T> outputClass)
-            throws DeserializationException, FileNotFoundException {
-        return readReferables(src, DEFAULT_CHARSET, outputClass);
+        throws DeserializationException, FileNotFoundException {
+        return readList(new FileInputStream(src), DEFAULT_CHARSET, outputClass);
     }
 
     /**
@@ -311,12 +307,12 @@ public class JsonDeserializer {
      * @throws java.io.FileNotFoundException if file is not found
      */
     public <T extends Referable> List<T> readReferables(File src, Charset charset, Class<T> outputClass)
-            throws DeserializationException, FileNotFoundException {
+        throws DeserializationException, FileNotFoundException {
         return readList(new FileInputStream(src), charset, outputClass);
     }
 
     /**
-     * Deserializes a given string into instance of an AAS type
+     * Generic method to deserialize a given string into instance of an AAS type
      *
      * @param value a string representation of the AAS instance
      * @param valueType the class type of the AAS instance
@@ -333,7 +329,7 @@ public class JsonDeserializer {
     }
 
     /**
-     * Deserializes a given JSON node into instance of an AAS type
+     * Generic method to deserialize a given JSON node into instance of an AAS type
      *
      * @param node the node to parse
      * @param valueType the class type of the AAS instance
@@ -351,7 +347,7 @@ public class JsonDeserializer {
     }
 
     /**
-     * Deserializes a given InputStream into instance of an AAS type, using a given charset
+     * Generic method to deserialize a given InputStream into instance of an AAS type, using a given charset
      *
      * @param stream An InputStream containing the string representation of the AAS instance
      * @param charset the charset to use for deserialization
