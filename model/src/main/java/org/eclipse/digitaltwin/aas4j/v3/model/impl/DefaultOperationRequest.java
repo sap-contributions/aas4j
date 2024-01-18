@@ -20,6 +20,7 @@ import org.eclipse.digitaltwin.aas4j.v3.model.OperationVariable;
 import org.eclipse.digitaltwin.aas4j.v3.model.annotations.IRI;
 import org.eclipse.digitaltwin.aas4j.v3.model.builder.OperationRequestBuilder;
 
+import javax.xml.datatype.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +35,7 @@ import java.util.Objects;
 public class DefaultOperationRequest implements OperationRequest {
 
     @IRI("https://admin-shell.io/aas/3/0/OperationRequest/clientTimeoutDuration")
-    protected String clientTimeoutDuration;
+    protected Duration clientTimeoutDuration;
 
     @IRI("https://admin-shell.io/aas/3/0/OperationRequest/inoutputArguments")
     protected List<OperationVariable> inoutputArguments = new ArrayList<>();
@@ -88,12 +89,12 @@ public class DefaultOperationRequest implements OperationRequest {
     }
 
     @Override
-    public String getClientTimeoutDuration() {
+    public Duration getClientTimeoutDuration() {
         return clientTimeoutDuration;
     }
 
     @Override
-    public void setClientTimeoutDuration(String clientTimeoutDuration) {
+    public void setClientTimeoutDuration(Duration clientTimeoutDuration) {
         this.clientTimeoutDuration = clientTimeoutDuration;
     }
 

@@ -19,6 +19,7 @@ import org.eclipse.digitaltwin.aas4j.v3.model.annotations.IRI;
 import org.eclipse.digitaltwin.aas4j.v3.model.annotations.KnownSubtypes;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.DefaultOperationRequest;
 
+import javax.xml.datatype.Duration;
 import java.util.List;
 
 
@@ -70,7 +71,7 @@ public interface OperationRequest {
      * @return Returns the String for the property clientTimeoutDuration.
      */
     @IRI("https://admin-shell.io/aas/3/0/OperationRequest/clientTimeoutDuration")
-    String getClientTimeoutDuration();
+    Duration getClientTimeoutDuration();
 
     /**
      *
@@ -78,6 +79,6 @@ public interface OperationRequest {
      *
      * @param clientTimeoutDuration desired value for the property clientTimeoutDuration.
      */
-    void setClientTimeoutDuration(String clientTimeoutDuration);
+    void setClientTimeoutDuration(Duration clientTimeoutDuration);
 
 }

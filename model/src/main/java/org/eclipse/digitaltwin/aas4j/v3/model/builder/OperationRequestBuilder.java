@@ -18,6 +18,7 @@ package org.eclipse.digitaltwin.aas4j.v3.model.builder;
 import org.eclipse.digitaltwin.aas4j.v3.model.OperationRequest;
 import org.eclipse.digitaltwin.aas4j.v3.model.OperationVariable;
 
+import javax.xml.datatype.Duration;
 import java.util.List;
 
 
@@ -74,7 +75,7 @@ public abstract class OperationRequestBuilder<T extends OperationRequest, B exte
      * @param clientTimeoutDuration desired value to be set
      * @return Builder object with new value for clientTimeoutDuration
      */
-    public B clientTimeoutDuration(String clientTimeoutDuration) {
+    public B clientTimeoutDuration(Duration clientTimeoutDuration) {
         getBuildingInstance().setClientTimeoutDuration(clientTimeoutDuration);
         return getSelf();
     }
