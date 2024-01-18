@@ -35,10 +35,7 @@ import java.util.Set;
 import static org.junit.Assert.assertTrue;
 
 public class JsonAssetAdministrationShellDescriptorSerializerTest {
-
-
     private static final Logger logger = LoggerFactory.getLogger(JsonAssetAdministrationShellDescriptorSerializerTest.class);
-
 
     @Test
     public void testReadAssetAdministrationShellDescriptor() throws IOException, SerializationException, JSONException {
@@ -49,7 +46,7 @@ public class JsonAssetAdministrationShellDescriptorSerializerTest {
 
     private void validateAndCompare(File expectedFile, AssetAdministrationShellDescriptor descriptor) throws IOException, SerializationException, JSONException {
         String expected = Files.readString(expectedFile.toPath());
-        String actual = new JsonSerializer().writeAssetAdministrationShellDescriptor(descriptor);
+        String actual = new JsonSerializer().write(descriptor);
         logger.debug(actual);
         Set<String> errors = new JsonSchemaValidator().validateSchema(actual);
         assertTrue(errors.isEmpty());

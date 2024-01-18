@@ -37,8 +37,8 @@ public class JsonReferenceDeserializerTest {
     @Before
     public void prepare() throws SerializationException {
         JsonSerializer serializer = new JsonSerializer();
-        reference_string = serializer.writeReference(AASFull.ENVIRONMENT.getSubmodels().get(0).getSemanticId());
-        reference_list_string = serializer.writeReferences(AASFull.ENVIRONMENT.getAssetAdministrationShells().get(0).getSubmodels());
+        reference_string = serializer.write(AASFull.ENVIRONMENT.getSubmodels().get(0).getSemanticId());
+        reference_list_string = serializer.writeList(AASFull.ENVIRONMENT.getAssetAdministrationShells().get(0).getSubmodels());
     }
 
     @Test

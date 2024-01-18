@@ -31,9 +31,6 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 public class JsonSpecificAssetIdDeserializerTest {
-
-    private static final Logger logger = LoggerFactory.getLogger(JsonSpecificAssetIdDeserializerTest.class);
-
     private String specificAssetId_string;
     private String specificAssetId_list_string;
 
@@ -46,13 +43,13 @@ public class JsonSpecificAssetIdDeserializerTest {
                 .name("testSpecificAssetId")
                 .value("testValue")
                 .build();
-        List<SpecificAssetId> specificAssetIds = new ArrayList<SpecificAssetId>() {{
+        List<SpecificAssetId> specificAssetIds = new ArrayList<>() {{
             add(specificAssetId);
             add(specificAssetId);
         }};
 
-        specificAssetId_string = serializer.writeSpecificAssetId(specificAssetId);
-        specificAssetId_list_string = serializer.writeSpecificAssetIds(specificAssetIds);
+        specificAssetId_string = serializer.write(specificAssetId);
+        specificAssetId_list_string = serializer.writeList(specificAssetIds);
     }
 
 

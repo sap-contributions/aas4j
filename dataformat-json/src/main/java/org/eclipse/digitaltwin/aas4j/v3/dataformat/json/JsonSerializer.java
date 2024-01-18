@@ -143,7 +143,7 @@ public class JsonSerializer {
     }
 
     /**
-     * Seializes a given collection of referables to string
+     * Serializes a given collection of referables to string
      * @param referables the collection of referables to serialize
      * @return the string representation of the collection
      * @throws SerializationException if serialization fails
@@ -153,7 +153,7 @@ public class JsonSerializer {
     }
 
     /**
-     *
+     * Converts a collection of referables to a JSON node.
      * @param referables the referables to serialize
      * @return the string representation of the list of referables
      */
@@ -162,7 +162,7 @@ public class JsonSerializer {
     }
 
     /**
-     * Serialize a referable to string.
+     * Serializes a referable to string.
      * @param referable the referable to serialize.
      * @return the string representation.
      * @throws SerializationException
@@ -172,7 +172,7 @@ public class JsonSerializer {
     }
 
     /**
-     * Serialize a collection of referables
+     * Serializes a collection of referables
      * @param referables the collection to serialize
      * @return the string representation.
      * @throws SerializationException
@@ -182,7 +182,7 @@ public class JsonSerializer {
     }
 
     /**
-     * Serialize a given object to a string
+     * Generic method to serialize a given object to a string
      *
      * @param aasInstance the object to serialize
      * @return the string representation
@@ -198,7 +198,7 @@ public class JsonSerializer {
     }
 
     /**
-     * Converts a given object to a JSON node
+     * Generic method to convert a given object to a JSON node
      *
      * @param aasInstance the object to serialize
      * @return the JSON node representation
@@ -209,10 +209,10 @@ public class JsonSerializer {
     }
 
     /**
-     * Serializes a given object to an OutputStream using given charset
+     * Generic method to serialize a given object to an output stream using given charset
      *
-     * @param out the Outputstream to serialize to
-     * @param charset the Charset to use for serialization
+     * @param out the output stream to serialize to
+     * @param charset the charset to use for serialization
      * @param aasInstance the object to serialize
      * @throws SerializationException if serialization fails
      */
@@ -225,7 +225,7 @@ public class JsonSerializer {
     }
 
     /**
-     * Serialize a collection.
+     * Generic method to serialize a collection.
      * @param collection the collection to serialize
      * @return the string representation of the collection.
      * @throws SerializationException if serialization fails
@@ -246,62 +246,5 @@ public class JsonSerializer {
         } catch (JsonProcessingException ex) {
             throw new SerializationException("error serializing list of " + clazz.getSimpleName(), ex);
         }
-    }
-
-    /**
-     * Serialize a reference
-     * @param reference the collection to serialize
-     * @return the string representation.
-     * @throws SerializationException
-     */
-    public String writeReference(Reference reference) throws SerializationException {
-        return write(reference);
-    }
-
-    /**
-     * Serialize a collection of references
-     * @param references the collection to serialize
-     * @return the string representation
-     * @throws SerializationException
-     */
-    public String writeReferences(List<Reference> references) throws SerializationException {
-        return write(references);
-    }
-
-    /**
-     * Serialize a specific asset ID
-     * @param specificAssetId the asset ID to serialize
-     * @return the string representation.
-     * @throws SerializationException
-     */
-    public String writeSpecificAssetId(SpecificAssetId specificAssetId) throws SerializationException {
-        return write(specificAssetId);
-    }
-
-    /**
-     * Serialize a list of specific asset IDs
-     * @param specificAssetIds the asset IDs to serialize
-     * @return the string representation.
-     * @throws SerializationException
-     */
-    public String writeSpecificAssetIds(List<SpecificAssetId> specificAssetIds) throws SerializationException {
-        return write(specificAssetIds);
-    }
-
-    public String writeSubmodelDescriptor(SubmodelDescriptor submodelDescriptor) throws SerializationException {
-        return write(submodelDescriptor);
-    }
-
-
-    public String writeSubmodelDescriptors(List<SubmodelDescriptor> submodelDescriptors) throws SerializationException {
-        return write(submodelDescriptors);
-    }
-
-    public String writeAssetAdministrationShellDescriptor(AssetAdministrationShellDescriptor assetAdministrationShellDescriptor) throws SerializationException {
-        return write(assetAdministrationShellDescriptor);
-    }
-
-    public String writeAssetAdministrationShellDescriptors(List<AssetAdministrationShellDescriptor> assetAdministrationShellDescriptors) throws SerializationException {
-        return write(assetAdministrationShellDescriptors);
     }
 }
