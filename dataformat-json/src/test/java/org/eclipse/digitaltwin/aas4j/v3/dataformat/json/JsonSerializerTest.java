@@ -79,7 +79,7 @@ public class JsonSerializerTest {
     }
 
     @Test
-    public void testSerializeFullExampleToNode() throws SerializationException, JSONException, IOException {
+    public void testSerializeFullExampleToNode() throws JSONException, IOException {
         String expected = Examples.EXAMPLE_FULL.fileContent();
         JsonNode node = new JsonSerializer().toNode(Examples.EXAMPLE_FULL.getModel());
         String actual = new ObjectMapper().writeValueAsString(node);

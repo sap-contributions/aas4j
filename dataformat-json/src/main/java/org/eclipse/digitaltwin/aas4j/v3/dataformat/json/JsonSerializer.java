@@ -50,7 +50,7 @@ public class JsonSerializer {
     }
 
     /**
-     * Serialize a given instance of AAS environment to a string
+     * Serializes a given instance of AAS environment to a string
      *
      * @param aasEnvironment the AAS environment to serialize
      * @return the string representation of the environment
@@ -71,6 +71,17 @@ public class JsonSerializer {
         return toNode((Object)aasEnvironment);
     }
 
+    /**
+     * Serializes a given AAS environment to an output stream using given charset
+     *
+     * @param out the output stream to serialize to
+     * @param aasEnvironment the AAS environment to serialize
+     * @throws SerializationException if serialization fails
+     */
+    void write(OutputStream out, Environment aasEnvironment) throws SerializationException {
+        write(out, DEFAULT_CHARSET, (Object)aasEnvironment);
+    }
+    
     /**
      * Serializes a given AAS environment to an output stream using given charset
      *
