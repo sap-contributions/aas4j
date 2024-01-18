@@ -81,7 +81,7 @@ public class JsonSerializer {
     void write(OutputStream out, Environment aasEnvironment) throws SerializationException {
         write(out, DEFAULT_CHARSET, (Object)aasEnvironment);
     }
-    
+
     /**
      * Serializes a given AAS environment to an output stream using given charset
      *
@@ -92,49 +92,6 @@ public class JsonSerializer {
      */
     void write(OutputStream out, Charset charset, Environment aasEnvironment) throws SerializationException {
         write(out, charset, (Object)aasEnvironment);
-    }
-
-    /**
-     * Serialize a given object to a string
-     *
-     * @param aasInstance the object to serialize
-     * @return the string representation
-     * @throws SerializationException if serialization fails
-     */
-    public String write(Object aasInstance) throws SerializationException {
-        try {
-            return mapper.writeValueAsString(aasInstance);
-        } catch (JsonProcessingException ex) {
-            throw new SerializationException(
-                String.format("error serializing %s", aasInstance.getClass().getSimpleName()), ex);
-        }
-    }
-
-    /**
-     * Converts a given object to a JSON node
-     *
-     * @param aasInstance the object to serialize
-     * @return the JSON node representation
-     * @throws IllegalArgumentException
-     */
-    public JsonNode toNode(Object aasInstance) {
-        return mapper.valueToTree(aasInstance);
-    }
-
-    /**
-     * Serializes a given object to an OutputStream using given charset
-     *
-     * @param out the Outputstream to serialize to
-     * @param charset the Charset to use for serialization
-     * @param aasInstance the object to serialize
-     * @throws SerializationException if serialization fails
-     */
-    void write(OutputStream out, Charset charset, Object aasInstance) throws SerializationException {
-        try {
-            mapper.writeValue(new OutputStreamWriter(out, charset), aasInstance);
-        } catch (IOException ex) {
-            throw new SerializationException("error serializing " + aasInstance.getClass().getSimpleName() , ex);
-        }
     }
 
     /**
@@ -159,7 +116,7 @@ public class JsonSerializer {
      * @throws FileNotFoundException if the fail does not exist
      * @throws SerializationException if serialization fails
      */
-    void write(java.io.File file, Environment aasEnvironment)
+    void write(File file, Environment aasEnvironment)
         throws FileNotFoundException, SerializationException {
         write(file, DEFAULT_CHARSET, aasEnvironment);
     }
@@ -205,6 +162,69 @@ public class JsonSerializer {
     }
 
     /**
+     * Serialize a referable to string.
+     * @param referable the referable to serialize.
+     * @return the string representation.
+     * @throws SerializationException
+     */
+    public String writeReferable(Referable referable) throws SerializationException {
+        return write(referable);
+    }
+
+    /**
+     * Serialize a collection of referables
+     * @param referables the collection to serialize
+     * @return the string representation.
+     * @throws SerializationException
+     */
+    public String writeReferables(List<Referable> referables) throws SerializationException {
+        return write(referables);
+    }
+
+    /**
+     * Serialize a given object to a string
+     *
+     * @param aasInstance the object to serialize
+     * @return the string representation
+     * @throws SerializationException if serialization fails
+     */
+    public String write(Object aasInstance) throws SerializationException {
+        try {
+            return mapper.writeValueAsString(aasInstance);
+        } catch (JsonProcessingException ex) {
+            throw new SerializationException(
+                    String.format("error serializing %s", aasInstance.getClass().getSimpleName()), ex);
+        }
+    }
+
+    /**
+     * Converts a given object to a JSON node
+     *
+     * @param aasInstance the object to serialize
+     * @return the JSON node representation
+     * @throws IllegalArgumentException
+     */
+    public JsonNode toNode(Object aasInstance) {
+        return mapper.valueToTree(aasInstance);
+    }
+
+    /**
+     * Serializes a given object to an OutputStream using given charset
+     *
+     * @param out the Outputstream to serialize to
+     * @param charset the Charset to use for serialization
+     * @param aasInstance the object to serialize
+     * @throws SerializationException if serialization fails
+     */
+    void write(OutputStream out, Charset charset, Object aasInstance) throws SerializationException {
+        try {
+            mapper.writeValue(new OutputStreamWriter(out, charset), aasInstance);
+        } catch (IOException ex) {
+            throw new SerializationException("error serializing " + aasInstance.getClass().getSimpleName() , ex);
+        }
+    }
+
+    /**
      * Serialize a collection.
      * @param collection the collection to serialize
      * @return the string representation of the collection.
@@ -226,39 +246,6 @@ public class JsonSerializer {
         } catch (JsonProcessingException ex) {
             throw new SerializationException("error serializing list of " + clazz.getSimpleName(), ex);
         }
-    }
-
-    /**
-     * Serializes a given object to a java.io.File using given charset
-     *
-     * @param file the java.io.File to serialize to
-     * @param aasInstance the object to serialize
-     * @throws FileNotFoundException if the file does not exist
-     * @throws SerializationException if serialization fails
-     */
-    void write(File file, Object aasInstance)
-        throws FileNotFoundException,  SerializationException {
-        write(new FileOutputStream(file), DEFAULT_CHARSET, aasInstance);
-    }
-
-    /**
-     * Serialize a referable to string.
-     * @param referable the referable to serialize.
-     * @return the string representation.
-     * @throws SerializationException
-     */
-    public String writeReferable(Referable referable) throws SerializationException {
-        return write(referable);
-    }
-
-    /**
-     * Serialize a collection of referables
-     * @param referables the collection to serialize
-     * @return the string representation.
-     * @throws SerializationException
-     */
-    public String writeReferables(List<Referable> referables) throws SerializationException {
-        return write(referables);
     }
 
     /**
