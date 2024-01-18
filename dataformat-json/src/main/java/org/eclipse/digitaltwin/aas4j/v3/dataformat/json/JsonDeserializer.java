@@ -233,7 +233,7 @@ public class JsonDeserializer {
      * @throws DeserializationException if deserialization of referable fails
      */
     public <T extends Referable> List<T> readReferables(String referables, Class<T> outputClass)
-            throws DeserializationException {
+        throws DeserializationException {
         return readList(referables, outputClass);
     }
 
