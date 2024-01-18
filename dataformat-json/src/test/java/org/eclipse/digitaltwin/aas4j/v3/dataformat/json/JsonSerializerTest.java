@@ -45,7 +45,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class JsonSerializerTest {
-
     private static final Logger logger = LoggerFactory.getLogger(JsonSerializerTest.class);
 
     @Rule
@@ -87,11 +86,10 @@ public class JsonSerializerTest {
     }
 
     @Test
-    public void testSerializeEmptyReferableList() throws SerializationException {
+    public void testSerializeEmptyReferableList() throws SerializationException, JSONException {
         List<Referable> emptyList = Collections.emptyList();
-        String serialized = new JsonSerializer().write(emptyList);
-        // Currently JsonSerializer serializes to a pretty string.
-        assertEquals(JsonNodeFactory.instance.arrayNode().toPrettyString(), serialized);
+        String actual = new JsonSerializer().write(emptyList);
+        JSONAssert.assertEquals("[]", actual, JSONCompareMode.NON_EXTENSIBLE);
     }
 
     private void validateAndCompare(ExampleData<Environment> exampleData) throws IOException, SerializationException, JSONException {

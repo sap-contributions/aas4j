@@ -99,12 +99,14 @@ public class JsonSerializer {
      * @throws SerializationException if serialization fails
      */
     public String write(Collection<?> collection) throws SerializationException {
-        if (collection == null) {
-            return null;
+        if (collection == null || collection.isEmpty()) {
+            try {
+                return mapper.writeValueAsString(collection);
+            } catch (JsonProcessingException e) {
+                throw new SerializationException("error serializing list");
+            }
         }
-        if (collection.isEmpty()) {
-            return mapper.createArrayNode().toString();
-        }
+
         Class clazz = collection.iterator().next().getClass();
         try {
             return mapper.writerFor(mapper.getTypeFactory().constructCollectionType(List.class, clazz))
