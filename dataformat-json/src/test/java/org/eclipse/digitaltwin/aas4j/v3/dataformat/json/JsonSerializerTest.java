@@ -18,6 +18,8 @@ package org.eclipse.digitaltwin.aas4j.v3.dataformat.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.SerializationException;
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.core.AASSimple;
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.json.util.ExampleData;
@@ -50,19 +52,19 @@ public class JsonSerializerTest {
     public TemporaryFolder tempFolder = new TemporaryFolder();
 
     @Test
-    public void testSerializeNull() throws JsonProcessingException, IOException, SerializationException {
-        assertEquals("null", new JsonSerializer().write((Environment) null));
+    public void testSerializeNull() throws SerializationException {
+        assertEquals("null", new JsonSerializer().write(null));
     }
 
     @Test
-    public void testWriteToFile() throws JsonProcessingException, IOException, SerializationException {
+    public void testWriteToFile() throws IOException, SerializationException {
         File file = tempFolder.newFile("output.json");
         new JsonSerializer().write(file, AASSimple.createEnvironment());
         assertTrue(file.exists());
     }
 
     @Test
-    public void testSerializeEmpty() throws JsonProcessingException, IOException, SerializationException, JSONException {
+    public void testSerializeEmpty() throws IOException, SerializationException, JSONException {
         validateAndCompare(Examples.ENVIRONMENT_EMPTY);
     }
 
@@ -88,7 +90,8 @@ public class JsonSerializerTest {
     public void testSerializeEmptyReferableList() throws SerializationException {
         List<Referable> emptyList = Collections.emptyList();
         String serialized = new JsonSerializer().write(emptyList);
-        assertEquals("[]", serialized);
+        // Currently JsonSerializer serializes to a pretty string.
+        assertEquals(JsonNodeFactory.instance.arrayNode().toPrettyString(), serialized);
     }
 
     private void validateAndCompare(ExampleData<Environment> exampleData) throws IOException, SerializationException, JSONException {
@@ -97,12 +100,11 @@ public class JsonSerializerTest {
         validateAndCompare(expected, actual);
     }
 
-    private void validateAndCompare(String expected, String actual) throws IOException, SerializationException, JSONException {
+    private void validateAndCompare(String expected, String actual) throws JSONException {
         logger.info(actual);
         Set<String> errors = new JsonSchemaValidator().validateSchema(actual);
         assertTrue(errors.isEmpty());
         JSONAssert.assertEquals(expected, actual, JSONCompareMode.NON_EXTENSIBLE);
         JSONAssert.assertEquals(actual, expected, JSONCompareMode.NON_EXTENSIBLE);
     }
-
 }
