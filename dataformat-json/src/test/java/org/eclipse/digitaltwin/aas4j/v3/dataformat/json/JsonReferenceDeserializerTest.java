@@ -44,19 +44,14 @@ public class JsonReferenceDeserializerTest {
     @Test
     public void testDeserializeReference() throws DeserializationException {
         JsonDeserializer deserializer = new JsonDeserializer();
-
-        Reference reference = deserializer.readReference(reference_string);
-
+        Reference reference = deserializer.read(reference_string, Reference.class);
         assertTrue(!reference.getKeys().get(0).getValue().isEmpty());
     }
-
 
     @Test
     public void testDeserializeReferenceList() throws DeserializationException {
         JsonDeserializer deserializer = new JsonDeserializer();
-
-        List<Reference> referenceList = deserializer.readReferences(reference_list_string);
-
+        List<Reference> referenceList = deserializer.readList(reference_list_string, Reference.class);
         assertTrue(referenceList.get(0).getType().equals(ReferenceTypes.EXTERNAL_REFERENCE));
     }
 }
