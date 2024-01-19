@@ -17,7 +17,6 @@
 package org.eclipse.digitaltwin.aas4j.v3.dataformat.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.DeserializationException;
 import org.eclipse.digitaltwin.aas4j.v3.dataformat.SerializationException;
@@ -43,7 +42,6 @@ public class JsonDurationDeserializerTest {
     @Before
     public void prepare() throws SerializationException, JsonProcessingException {
 
-        JsonNode node = new JsonSerializer().toNode(org.eclipse.digitaltwin.aas4j.v3.dataformat.json.util.Examples.EXAMPLE_FULL.getModel());
         operationRequestString = new ObjectMapper().writeValueAsString(Examples.OPERATION_REQUEST);
 
     }
