@@ -86,7 +86,7 @@ public class AASFull {
     public final static ConceptDescription CONCEPT_DESCRIPTION_3 = createConceptDescription3();
     public final static ConceptDescription CONCEPT_DESCRIPTION_4 = createConceptDescription4();
     public static final Environment ENVIRONMENT = createEnvironment();
-    public static final String AAS_3_0_RC_02_DATA_SPECIFICATION_IEC_61360 = "https://admin-shell.io/aas/3/0/RC02/DataSpecificationIec61360";
+    public static final String AAS_3_0_RC_02_DATA_SPECIFICATION_IEC_61360 = "https://admin-shell.io/aas/3/1/DataSpecificationIec61360";
 
     public static AssetAdministrationShell createAAS1() {
         return new DefaultAssetAdministrationShell.Builder()
